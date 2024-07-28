@@ -1,5 +1,5 @@
-import SimpleLightbox from "simplelightbox";
-import "simplelightbox/dist/simple-lightbox.min.css"
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const images = [
   {
@@ -68,20 +68,23 @@ const images = [
 ];
 
 const gallery = document.querySelector('.gallery');
+let galleryHTML = '';
 
 images.forEach(image => {
-  gallery.innerHTML += `
-            <li class="gallery-item">
-                <a class="gallery-link" href="${image.original}">
-                    <img
-                        class="gallery-image"
-                        src="${image.preview}"
-                        data-source="${image.original}"
-                        alt="${image.description}"
-                    />
-                </a>
-            </li>
-        `;
+  galleryHTML += `
+    <li class="gallery-item">
+        <a class="gallery-link" href="${image.original}">
+            <img
+                class="gallery-image"
+                src="${image.preview}"
+                data-source="${image.original}"
+                alt="${image.description}"
+            />
+        </a>
+    </li>
+  `;
 });
 
-new SimpleLightbox('.gallery a');
+gallery.innerHTML = galleryHTML;
+
+new SimpleLightbox('.gallery a', { captionsData: 'alt', captionDelay: 250 });
